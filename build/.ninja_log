@@ -83,3 +83,7 @@
 586	846	1724646132051496967	CMakeFiles/blink.dir/home/matt/.pico-sdk/sdk/2.0.0/src/rp2_common/pico_cyw43_arch/cyw43_arch_threadsafe_background.c.obj	795d45ad7fcdd85e
 9	48	1724646131473515893	pico-sdk/src/rp2040/boot_stage2/CMakeFiles/bs2_default.dir/compile_time_choice.S.obj	59ff8aef2b05b56
 89	262	1724646131719507828	pico-sdk/src/rp2040/boot_stage2/bs2_default_padded_checksummed.S	75a9ec16a22c2d74
+7	95	1724697949948759616	CMakeFiles/blink.dir/blink.c.obj	64d38a7d07aa9f76
+95	286	1724697950036759292	blink.elf	a489c44c10b0836e
+12	108	1724697982904638599	CMakeFiles/blink.dir/blink.c.obj	64d38a7d07aa9f76
+109	315	1724697983001638244	blink.elf	a489c44c10b0836e
