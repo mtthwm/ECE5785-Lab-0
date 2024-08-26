@@ -2,33 +2,35 @@ name: CMake
 on: [push, pull_request]
 
 env:
-  # Set the build type
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
   steps:
     - name: Clean workspace
       run: |
-        echo "cleaning up the previous run"
+        echo "Cleaning up previous run"
         rm -rf "${{ github.workspace }}"
         mkdir -p "${{ github.workspace }}"
 
     - name: Checkout pico-sdk/develop
-      usees: actions/checkout@v2
+      uses: actions/checkout@v2
       with:
         repository: raspberrypi/pico-sdk
         ref: develop
         path: pico-sdk
 
+    - name: Checkout pico-sdk submodules
+      working-directory: ${{github.workspace}}/pico-sdk
+      run: git submodule update --init
+
     - name: Create Build Environment
       # Some projects don't allow in-source building, so create a separate build directory
       # We'll use this as our working directory for all subsequent commands
-
       working-directory: ${{github.workspace}}/build
-      run: cmake -E make_directory ${{github.workspace}}/build
+      run:  cmake -E make_directory ${{github.workspace}}/build
 
     - name: Configure CMake
       # Use a bash shell so we can use the same syntax for environment variable
@@ -44,4 +46,4 @@ jobs:
       working-directory: ${{github.workspace}}
       shell: bash
       # Execute the build.  You can specify a specific target with "--target <NAME>"
-      run: cmake --build ./build --config $BUILD_TYPE --parallel $(ncproc)
+      run: cmake --build ./build --config $BUILD_TYPE --parallel $(nproc)
